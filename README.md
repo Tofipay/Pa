@@ -1,112 +1,180 @@
-<!DOCTYPE html>
+ سلا.
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تصميم الصفحة</title>
+    <title>عرض الأفلام والحلقات</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #003366;
-            color: #fff;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
         }
 
         .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #003366;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .video-player {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .episode-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .episode-item {
-            margin: 5px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 5px;
             padding: 10px;
-            background-color: #111;
+            max-width: 100%;
+            margin-bottom: 20px; /* إضافة مسافة بين الصفوف */
+        }
+
+        .movie-card, .episode-card {
+            background-color: #003366; /* لون أزرق غامق */
             border-radius: 8px;
-            cursor: pointer;
-            width: 60px;
-            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-width: 160px;
+            transition: transform 0.2s;
+            color: white; /* لون النص أبيض */
         }
 
-        .episode-item:hover {
+        .movie-card:hover, .episode-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-poster, .episode-poster {
+            width: 100%;
+            height: 200px; /* تعديل ارتفاع الصورة */
+            object-fit: cover; /* للحفاظ على نسبة العرض إلى الارتفاع */
+        }
+
+        .movie-info, .episode-info {
+            padding: 10px;
+        }
+
+        .movie-title, .episode-title {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .title-wrapper {
             background-color: #003366;
+            color: white;
+            padding: 0px 0px;
+            border-radius: 20px;
+            margin: -5px 0 5px; /* مسافة بين العنوان وصف الحلقات */
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #episode-title {
-            text-align: center;
-            font-size: 20px;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="video-player">
-            <iframe allow="fullscreen" allowfullscreen height="315" src="" width="100%" style="border:none;"></iframe>
-            <div id="episode-title"></div>
+    <!-- عنوان الأفلام -->
+    <div class="title-wrapper">
+        <h2 class="title">أفلام</h2>
+    </div>
+    
+    <div class="container" id="movie-container">
+        <!-- فيلم 1 -->
+        <div class="movie-card">
+            <a href="go:S1">
+                <img src="https://www.tuktukcima.com/wp-content/uploads/2024/05/MV5BMzkwODZjYjAtZDQ0Yy00YWM0LThmZTMtM2FiMzE1OWU2OGViXkEyXkFqcGdeQXVyMjQzNzIzMTA@.jpg_V1_SX700.jpg" alt="Movie Poster 1" class="movie-poster">
+                <div class="movie-info">
+                    <h2 class="movie-title">Movie Title 1</h2>
+                </div>
+            </a>
         </div>
-        <ul class="episode-list">
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/jyent0', 'مسلسل عثمان حلقة 1')">1</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/gc2jqw', 'مسلسل عثمان حلقة 2')">2</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/rr6681', 'مسلسل عثمان حلقة 3')">3</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/taf4ci', 'مسلسل عثمان حلقة 4')">4</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/w1rkc6', 'مسلسل عثمان حلقة 5')">5</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/0u8w2l', 'مسلسل عثمان حلقة 6')">6</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/9ixtwk', 'مسلسل عثمان حلقة 7')">7</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/7544vq', 'مسلسل عثمان حلقة 8')">8</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/gkqfjy', 'مسلسل عثمان حلقة 9')">9</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/3sn137', 'مسلسل عثمان حلقة 10')">10</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/cvetfr', 'مسلسل عثمان حلقة 11')">11</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/95qap8', 'مسلسل عثمان حلقة 12')">12</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/slvn5s', 'مسلسل عثمان حلقة 13')">13</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/opsr0q', 'مسلسل عثمان حلقة 14')">14</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/jd4vfh', 'مسلسل عثمان حلقة 15')">15</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/h6pb0t', 'مسلسل عثمان حلقة 16')">16</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/m5e8u1', 'مسلسل عثمان حلقة 17')">17</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/ckns9n', 'مسلسل عثمان حلقة 18')">18</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/keh02y', 'مسلسل عثمان حلقة 19')">19</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/j8lthb', 'مسلسل عثمان حلقة 20')">20</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/wddp1b', 'مسلسل عثمان حلقة 21')">21</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/niipwz', 'مسلسل عثمان حلقة 22')">22</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/7ia38w', 'مسلسل عثمان حلقة 23')">23</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/dc8enr', 'مسلسل عثمان حلقة 24')">24</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/j3u82e', 'مسلسل عثمان حلقة 25')">25</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/7a5sml', 'مسلسل عثمان حلقة 26')">26</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/l3b8lh', 'مسلسل عثمان حلقة 27')">27</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/udi8vg', 'مسلسل عثمان حلقة 28')">28</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/lwaup1', 'مسلسل عثمان حلقة 29')">29</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/7mofid', 'مسلسل عثمان حلقة 30')">30</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/ltwnat', 'مسلسل عثمان حلقة 31')">31</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/a6153q', 'مسلسل عثمان حلقة 32')">32</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/6m5nc6', 'مسلسل عثمان حلقة 33')">33</li>
-            <li class="episode-item" onclick="playVideo('https://streamable.com/e/6m5nc6', 'مسلسل عثمان حلقة 34')">34</li>
-        </ul>
+        
+        <!-- فيلم 2 -->
+        <div class="movie-card">
+            <a href="go:S2">
+                <img src="https://www.tuktukcima.com/wp-content/uploads/2024/06/MV5BN2I3NjEzZjctY2ViZS00Zjg5LWEzYjMtMGEyYTM0MzNkY2RlXkEyXkFqcGdeQXVyODU0MTM0OTU@._V1_-scaled.jpg" alt="Movie Poster 2" class="movie-poster">
+                <div class="movie-info">
+                    <h2 class="movie-title">Movie Title 2</h2>
+                </div>
+            </a>
+        </div>
+
+        <!-- فيلم 3 -->
+        <div class="movie-card">
+            <a href="go:S3">
+                <img src="https://www.tuktukcima.com/wp-content/uploads/2019/11/MV5BZGZjYTY4MzMtOTc1ZC00NWM2LTkxMzEtOTA2MTc5YmZhYzhlXkEyXkFqcGdeQXVyOTg4MDYyNw@@-.jpg" alt="Movie Poster 3" class="movie-poster">
+                <div class="movie-info">
+                    <h2 class="movie-title">Movie Title 3</h2>
+                </div>
+            </a>
+        </div>
+
+        <!-- فيلم 4 -->
+        <div class="movie-card">
+            <a href="go:S4">
+                <img src="https://www.tuktukcima.com/wp-content/uploads/2019/02/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SY1000_SX675_AL_.jpg" alt="Movie Poster 4" class="movie-poster">
+                <div class="movie-info">
+                    <h2 class="movie-title">Movie Title 4</h2>
+                </div>
+            </a>
+        </div>
+
+        <!-- فيلم 5 -->
+        <div class="movie-card">
+            <a href="go:S5">
+                <img src="https://www.tuktukcima.com/wp-content/uploads/2024/03/MV5BNWYxMWFmNmUtYzgzNy00NWYzLThlZDktN2I1ODAyMDhkMWI4XkEyXkFqcGdeQXVyODE5NzE3OTE@.jpg_V1_SX700.jpg" alt="Movie Poster 5" class="movie-poster">
+                <div class="movie-info">
+                    <h2 class="movie-title">Movie Title 5</h2>
+                </div>
+            </a>
+        </div>
+
+        <!-- فيلم 6 -->
+        <div class="movie-card">
+            <a href="go:S6">
+                <img src="https://www.tuktukcima.com/wp-content/uploads/2024/03/MV5BNWYxMWFmNmUtYzgzNy00NWYzLThlZDktN2I1ODAyMDhkMWI4XkEyXkFqcGdeQXVyODE5NzE3OTE@.jpg_V1_SX700.jpg" alt="Movie Poster 6" class="movie-poster">
+                <div class="movie-info">
+                    <h2 class="movie-title">Movie Title 6</h2>
+                </div>
+            </a>
+        </div>
     </div>
 
-    <script>
-        function playVideo(videoUrl, episodeTitle) {
-            const iframe = document.querySelector('.video-player iframe');
-            iframe.src = videoUrl;
-            document.getElementById('episode-title').textContent = episodeTitle;
-        }
-    </script>
-</body>
-</html>
+    <!-- عنوان المسلسلات -->
+    <div class="title-wrapper">
+        <h2 class="title">مسلسلات تركية</h2>
+    </div>
+    
+    <!-- صف الحلقات -->
+    <div class="container" id="episode-container">
+        <!-- حلقة 1 -->
+        <div class="episode-card">
+            <a href="go:E1">
+                <img src="https://www.tuktukcima.com/wp-content/uploads/2023/10/f7hfgnexkaas0bn-medium.jpg" alt="Episode 1" class="episode-poster">
+                <div class="episode-info">
+                    <h2 class="episode-title">Episode Title 1</h2>
+                </div>
+            </a>
+        </div>
+
+        <!-- حلقة 2 -->
+        <div class="episode-card">
+            <a href="go:E2">
+                <img src="https://www.tuktukcima.com/wp-content/uploads/2023/11/MV5BM2JiZmNhNDctZmViMC00ZDYwLWE3MTQtZTQyNWY1NjkxNjZiXkEyXkFqcGdeQXVyMTMxODEzNzgz._V1_SX700.jpg" alt="Episode 2" class="episode-poster">
+<HTML لانغ = "EN">            <div class="episode-info">
+<<الرأس>.>.<h2 class="episode-title">Episode Title 2</h2>
+ <ميتا charset="UTF-8"> </div>
+ <meta name="viewport" content="width=عرض الجهاز، المقياس الأولي=1.0"> </a>
+ <title>عرض الأفلام والحلقات</title> </div>
+
+ الجسم {     <!-- حلقة 3 -->
+ الخط الأسرة: Arial، sans-serif. <div class="episode-card">
+ الخلفية اللون: #ffffff; <a href="go:E3">
+ عرض: المرن. <img src="https://www.tuktukcima.com/wp-content/uploads/2024/03/MV5BYjQ2ODViODktN2Y0NC00MGMzLWI0YzEtMmMwZTRhZWIzMzQyXkEyXkFqcGdeQXVyNzg5NTE1MzE@.jpg_V1_SX700.jpg" alt="Episode 3" class="episode-poster">
+ فليكس الاتجاه: العمود؛ <div class="episode-info">
+ محاذاة البنود: مركز; <h2 class="episode-title">Episode Title 3</h2>
+ الارتفاع: 100vh; </div>
+ الهامش: 0؛ </a>
+ } </div>
+
+ .الحاوية {     <!-- حلقة 4 -->
+ عرض: المرن. <div class="episode-card">
+ تجاوز-x: السيارات؛ <a href="go:E4">
+ التمرير السلوك: على نحو سلس. <img src="https://via.placeholder.com/160x200.png?text=Episode+4" alt="Episode 4" class="episode-poster">
+ الفجوة: 5px؛ <div class="episode-info">
+ الحشو: 10px.                 <h2 class="episode-title">Episode
